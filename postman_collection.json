@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "8f8efbd2-6a4a-4e2e-a5bb-41a469fb5d7c",
+		"name": "CareFlow - Hospital Appointment API",
+		"description": "Postman Collection for testing the CareFlow Hospital Appointment Management System REST API endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@careflow.com\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"newpatient@careflow.com\",\n    \"password\": \"password\",\n    \"firstName\": \"Alice\",\n    \"lastName\": \"Smith\",\n    \"phone\": \"555-9080\",\n    \"role\": \"PATIENT\",\n    \"dateOfBirth\": \"1992-08-20\",\n    \"gender\": \"Female\",\n    \"bloodGroup\": \"A+\",\n    \"address\": \"456 Oak Lane, Cityville\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"newdoctor@careflow.com\",\n    \"password\": \"password\",\n    \"firstName\": \"Robert\",\n    \"lastName\": \"Chase\",\n    \"phone\": \"555-0922\",\n    \"role\": \"DOCTOR\",\n    \"specialization\": \"Cardiology\",\n    \"biography\": \"Expert cardiologist and surgeon with 10 years experience.\",\n    \"hospitalId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Public Hospitals List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/auth/hospitals",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"hospitals"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Operations",
+			"item": [
+				{
+					"name": "Admin Dashboard Analytics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/dashboard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Hospital Branch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"City General Wellness Hospital\",\n    \"address\": \"777 Broadway St\",\n    \"phone\": \"(555) 999-8888\",\n    \"city\": \"New York\",\n    \"description\": \"Comprehensive state of the art trauma and emergency clinic.\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/hospitals",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"hospitals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Doctor to Hospital",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/doctors/2/assign?hospitalId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"doctors",
+								"2",
+								"assign"
+							],
+							"query": [
+								{
+									"key": "hospitalId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search/List Patients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/patients?query=John",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"patients"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "John"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctor Operations",
+			"item": [
+				{
+					"name": "Doctor Dashboard Summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/doctor/dashboard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"doctor",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Availability Schedule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dayOfWeek\": \"MONDAY\",\n    \"startTime\": \"09:00:00\",\n    \"endTime\": \"12:00:00\",\n    \"slotDuration\": 30,\n    \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/doctor/schedules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"doctor",
+								"schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Block Available Time Slot",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/doctor/slots/1/block?blocked=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"doctor",
+								"slots",
+								"1",
+								"block"
+							],
+							"query": [
+								{
+									"key": "blocked",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Pending Booking",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/doctor/appointments/1/status?status=APPROVED",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"doctor",
+								"appointments",
+								"1",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "APPROVED"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient Operations",
+			"item": [
+				{
+					"name": "Search Doctors Directory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/patient/doctors?query=Gregory&specialization=Neurology",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient",
+								"doctors"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Gregory"
+								},
+								{
+									"key": "specialization",
+									"value": "Neurology"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inspect Doctor Free Slots",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/patient/doctors/2/slots?date=2026-06-08",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient",
+								"doctors",
+								"2",
+								"slots"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2026-06-08"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book Appointment Slot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"slotId\": 1,\n    \"notes\": \"Experiencing mild migraines and headaches for 3 days.\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/patient/appointments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient",
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Appointment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/patient/appointments/1/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patient",
+								"appointments",
+								"1",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt_token",
+			"value": "replace_with_jwt_from_login_response"
+		}
+	]
+}
