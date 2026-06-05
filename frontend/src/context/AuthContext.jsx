@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const response = await api.post('/auth/login', { email, password });
+      const response = await api.post('/api/auth/login', { email, password });
       if (response.data && response.data.success) {
         const userData = response.data.data;
         setUser(userData);
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (registerData) => {
     setLoading(true);
     try {
-      const response = await api.post('/auth/register', registerData);
+      const response = await api.post('/api/auth/register', registerData);
       if (response.data && response.data.success) {
         return { success: true, message: response.data.message };
       }
