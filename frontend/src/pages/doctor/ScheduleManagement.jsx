@@ -44,7 +44,7 @@ const ScheduleManagement = () => {
   const fetchSchedules = async () => {
     setLoadingSchedules(true);
     try {
-      const res = await api.get('/doctor/schedules');
+      const res = await api.get('/api/doctor/schedules');
       if (res.data && res.data.success) {
         setSchedules(res.data.data);
       }
@@ -96,7 +96,7 @@ const ScheduleManagement = () => {
     };
 
     try {
-      const res = await api.post('/doctor/schedules', payload);
+      const res = await api.post('/api/doctor/schedules', payload);
       if (res.data && res.data.success) {
         showToast('Schedule saved and slots generated successfully', 'success');
         fetchSchedules();
@@ -114,7 +114,7 @@ const ScheduleManagement = () => {
       return;
     }
     try {
-      const res = await api.delete(`/doctor/schedules/${id}`);
+     const res = await api.delete(`/api/doctor/schedules/${id}`);
       if (res.data && res.data.success) {
         showToast('Schedule and slots deleted successfully', 'success');
         setSchedules(schedules.filter(s => s.id !== id));
