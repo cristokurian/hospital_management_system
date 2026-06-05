@@ -58,7 +58,7 @@ const ScheduleManagement = () => {
   const fetchSlots = async (date) => {
     setLoadingSlots(true);
     try {
-      const res = await api.get(`/doctor/slots/date?date=${date}`);
+      const res = await api.get(`/api/doctor/slots/date?date=${date}`);
       if (res.data && res.data.success) {
         setSlots(res.data.data);
       }
@@ -128,7 +128,7 @@ const ScheduleManagement = () => {
   const handleToggleBlockSlot = async (slotId, currentBlocked) => {
     const newBlocked = !currentBlocked;
     try {
-      const res = await api.put(`/doctor/slots/${slotId}/block?blocked=${newBlocked}`);
+     const res = await api.put(`/api/doctor/slots/${slotId}/block?blocked=${newBlocked}`);
       if (res.data && res.data.success) {
         showToast(newBlocked ? 'Slot blocked' : 'Slot unblocked', 'success');
         setSlots(slots.map(s => s.id === slotId ? { ...s, isBlocked: newBlocked } : s));
