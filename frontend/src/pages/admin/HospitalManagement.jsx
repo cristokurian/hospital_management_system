@@ -39,7 +39,7 @@ const HospitalManagement = () => {
   const fetchHospitals = async () => {
     setLoading(true);
     try {
-      const res = await api.get('/admin/hospitals');
+      const res = await api.get('/api/admin/hospitals');
       if (res.data && res.data.success) {
         setHospitals(res.data.data);
       }
@@ -79,7 +79,7 @@ const HospitalManagement = () => {
       return;
     }
     try {
-      const res = await api.delete(`/admin/hospitals/${id}`);
+      const res = await api.delete(`/api/admin/hospitals/${id}`);
       if (res.data && res.data.success) {
         showToast('Hospital deleted successfully', 'success');
         setHospitals(hospitals.filter(h => h.id !== id));
@@ -101,7 +101,7 @@ const HospitalManagement = () => {
     try {
       if (selectedHospital) {
         // Edit Mode
-        const res = await api.put(`/admin/hospitals/${selectedHospital.id}`, payload);
+       const res = await api.put(`/api/admin/hospitals/${selectedHospital.id}`, payload);
         if (res.data && res.data.success) {
           showToast('Hospital updated successfully', 'success');
           setHospitals(hospitals.map(h => h.id === selectedHospital.id ? res.data.data : h));
@@ -109,7 +109,7 @@ const HospitalManagement = () => {
         }
       } else {
         // Add Mode
-        const res = await api.post('/admin/hospitals', payload);
+        const res = await api.post('/api/admin/hospitals', payload);
         if (res.data && res.data.success) {
           showToast('Hospital added successfully', 'success');
           setHospitals([...hospitals, res.data.data]);

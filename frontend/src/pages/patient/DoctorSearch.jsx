@@ -47,7 +47,7 @@ const DoctorSearch = () => {
 
   const fetchHospitals = async () => {
     try {
-      const res = await api.get('/patient/hospitals');
+      const res = await api.get('/api/patient/hospitals');
       if (res.data && res.data.success) {
         setHospitals(res.data.data);
       }
@@ -64,7 +64,7 @@ const DoctorSearch = () => {
       if (specialization) params.specialization = specialization;
       if (hospitalId) params.hospitalId = hospitalId;
 
-      const res = await api.get('/patient/doctors', { params });
+      const res = await api.get('/api/patient/doctors', { params });
       if (res.data && res.data.success) {
         setDoctors(res.data.data);
       }
@@ -90,7 +90,7 @@ const DoctorSearch = () => {
       const fetchSlots = async () => {
         setLoadingSlots(true);
         try {
-          const res = await api.get(`/patient/doctors/${selectedDoctor.id}/slots?date=${selectedDate}`);
+         const res = await api.get(`/api/patient/doctors/${selectedDoctor.id}/slots?date=${selectedDate}`);
           if (res.data && res.data.success) {
             setSlots(res.data.data);
           }
@@ -129,7 +129,7 @@ const DoctorSearch = () => {
     };
 
     try {
-      const res = await api.post('/patient/appointments', payload);
+;      const res = await api.post('/api/patient/appointments', payload);
       if (res.data && res.data.success) {
         showToast('Appointment booked successfully! Awaiting approval.', 'success');
         setIsBookingOpen(false);

@@ -38,7 +38,7 @@ const PatientDashboard = () => {
 
   const fetchDashboard = async () => {
     try {
-      const res = await api.get('/patient/dashboard');
+     const res = await api.get('/api/patient/dashboard');
       if (res.data && res.data.success) {
         setAppointments(res.data.data);
       }
@@ -59,7 +59,9 @@ const PatientDashboard = () => {
       const fetchSlots = async () => {
         setLoadingSlots(true);
         try {
-          const res = await api.get(`/patient/doctors/${selectedApp.doctorId}/slots?date=${rescheduleDate}`);
+const res = await api.get(
+  `/api/patient/doctors/${selectedApp.doctorId}/slots?date=${rescheduleDate}`
+);
           if (res.data && res.data.success) {
             setAvailableSlots(res.data.data);
           }
@@ -78,7 +80,7 @@ const PatientDashboard = () => {
       return;
     }
     try {
-      const res = await api.put(`/patient/appointments/${id}/cancel`);
+      const res = await api.put(`/api/patient/appointments/${id}/cancel`);
       if (res.data && res.data.success) {
         showToast('Appointment cancelled successfully', 'success');
         fetchDashboard();
@@ -101,7 +103,9 @@ const PatientDashboard = () => {
     if (!selectedApp) return;
 
     try {
-      const res = await api.put(`/patient/appointments/${selectedApp.id}/reschedule?newSlotId=${newSlotId}`);
+      const res = await api.put(
+  `/api/patient/appointments/${selectedApp.id}/reschedule?newSlotId=${newSlotId}`
+);
       if (res.data && res.data.success) {
         showToast('Rescheduled successfully. Awaiting doctor re-approval.', 'success');
         setIsRescheduleOpen(false);

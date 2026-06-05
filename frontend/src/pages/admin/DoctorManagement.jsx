@@ -33,7 +33,7 @@ const DoctorManagement = () => {
     setLoading(true);
     try {
       // 1. Fetch hospitals (for drop-down assignments and filters)
-      const hospRes = await api.get('/admin/hospitals');
+      const hospRes = await api.get('/api/admin/hospitals');
       if (hospRes.data && hospRes.data.success) {
         setHospitals(hospRes.data.data);
       }
@@ -41,7 +41,7 @@ const DoctorManagement = () => {
       // 2. Fetch doctors. We can call our patient search doctors API which returns all doctors by query.
       // Wait, can we call a general search doctors API?
       // In PatientController, we have `/api/patient/doctors`. Can we reuse it? Yes, we can request it, or create a specific admin route. But since `/api/patient/doctors` is open to authenticated users and returns DoctorResponse list, it's perfect!
-      const docRes = await api.get('/patient/doctors');
+const docRes = await api.get('/api/patient/doctors');
       if (docRes.data && docRes.data.success) {
         setDoctors(docRes.data.data);
       }
@@ -58,7 +58,9 @@ const DoctorManagement = () => {
 
   const handleAssignHospital = async (doctorId, hospitalId) => {
     try {
-      const url = `/admin/doctors/${doctorId}/assign` + (hospitalId ? `?hospitalId=${hospitalId}` : '');
+      const url = `/api/admin/doctors/${doctorId}/assign` +
+  (hospitalId ? `?hospitalId=${hospitalId}` : '');
+
       const res = await api.put(url);
       if (res.data && res.data.success) {
         showToast('Hospital assignment updated successfully', 'success');
@@ -87,7 +89,7 @@ const DoctorManagement = () => {
       return;
     }
     try {
-      const res = await api.delete(`/admin/doctors/${id}`);
+      const res = await api.delete(`/api/admin/doctors/${id}`);
       if (res.data && res.data.success) {
         showToast('Doctor account deleted successfully', 'success');
         setDoctors(doctors.filter(d => d.id !== id));

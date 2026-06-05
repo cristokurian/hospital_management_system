@@ -27,7 +27,7 @@ const DoctorDashboard = () => {
 
   const fetchDashboard = async () => {
     try {
-      const res = await api.get('/doctor/dashboard');
+      const res = await api.get('/api/doctor/dashboard');
       if (res.data && res.data.success) {
         setAppointments(res.data.data);
       }
@@ -44,7 +44,7 @@ const DoctorDashboard = () => {
 
   const handleUpdateStatus = async (appointmentId, status) => {
     try {
-      const res = await api.put(`/doctor/appointments/${appointmentId}/status?status=${status}`);
+     const res = await api.put(`/api/doctor/appointments/${appointmentId}/status?status=${status}`);
       if (res.data && res.data.success) {
         showToast(`Appointment status updated to ${status.toLowerCase()}`, 'success');
         

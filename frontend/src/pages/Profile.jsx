@@ -51,7 +51,9 @@ const Profile = () => {
   const fetchProfile = async () => {
     setLoading(true);
     try {
-      const endpoint = user.role === 'DOCTOR' ? '/doctor/profile' : '/patient/profile';
+      const endpoint = user.role === 'DOCTOR'
+  ? '/api/doctor/profile'
+  : '/api/patient/profile';
       const res = await api.get(endpoint);
       if (res.data && res.data.success) {
         const data = res.data.data;
@@ -103,7 +105,11 @@ const Profile = () => {
     };
 
     try {
-      const endpoint = user.role === 'DOCTOR' ? '/doctor/profile' : '/patient/profile';
+      const endpoint = user.role === 'DOCTOR'
+  ? '/api/doctor/profile'
+  : '/api/patient/profile';
+
+
       const res = await api.put(endpoint, payload);
       if (res.data && res.data.success) {
         showToast('Profile updated successfully', 'success');
@@ -131,7 +137,9 @@ const Profile = () => {
 
     setIsChangingPassword(true);
     try {
-      const endpoint = user.role === 'DOCTOR' ? '/doctor/password' : '/patient/password';
+      const endpoint = user.role === 'DOCTOR'
+  ? '/api/doctor/password'
+  : '/api/patient/password';
       const res = await api.put(endpoint, { oldPassword, newPassword });
       if (res.data && res.data.success) {
         showToast('Password changed successfully', 'success');

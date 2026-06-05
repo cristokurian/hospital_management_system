@@ -63,7 +63,7 @@ const PatientList = () => {
     setAppointments([]);
 
     try {
-      const res = await api.get(`/admin/patients/${patient.id}/appointments`);
+      const res = await api.get(`/api/admin/patients/${patient.id}/appointments`);
       if (res.data && res.data.success) {
         setAppointments(res.data.data);
       }
