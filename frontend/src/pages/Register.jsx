@@ -58,7 +58,7 @@ const Register = () => {
   useEffect(() => {
     const fetchHospitals = async () => {
       try {
-        const res = await api.get('/auth/hospitals');
+        const res = await api.get('/api/auth/hospitals');
         if (res.data && res.data.success) {
           setHospitalsList(res.data.data);
         }
