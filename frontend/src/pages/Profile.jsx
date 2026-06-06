@@ -248,14 +248,14 @@ const Profile = () => {
                     <div className="space-y-1">
                       <label className="text-xs font-semibold text-slate-400">Date of Birth</label>
                       <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500 dark:text-sky-300">
                           <Calendar size={16} />
                         </div>
                         <input
                           type="date"
                           value={dateOfBirth}
                           onChange={(e) => setDateOfBirth(e.target.value)}
-                          className="block w-full pl-9 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/85 rounded-xl text-sm focus:outline-none"
+                          className="block w-full pl-9 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/85 rounded-xl text-sm text-slate-900 dark:text-sky-300 focus:outline-none"
                         />
                       </div>
                     </div>
