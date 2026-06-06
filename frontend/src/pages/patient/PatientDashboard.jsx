@@ -281,7 +281,7 @@ const res = await api.get(
                   type="date"
                   value={rescheduleDate}
                   onChange={(e) => setRescheduleDate(e.target.value)}
-                  className="block w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-700/80 rounded-xl text-sm focus:outline-none"
+                  className="block w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-700/80 rounded-xl text-sm text-slate-900 dark:text-sky-300 focus:outline-none"
                 />
               </div>
 
