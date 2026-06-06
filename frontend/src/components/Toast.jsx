@@ -18,7 +18,9 @@ const Toast = ({ message, type = 'success', onClose }) => {
       ) : (
         <AlertCircle className="h-5 w-5 text-rose-400 shrink-0" />
       )}
-      <span className="text-sm font-semibold text-slate-100">{message}</span>
+      <span className="text-sm font-semibold text-sky-400">
+  {message}
+</span>
       <button onClick={onClose} className="text-slate-400 hover:text-slate-200 transition-colors ml-4">
         <X size={16} />
       </button>
